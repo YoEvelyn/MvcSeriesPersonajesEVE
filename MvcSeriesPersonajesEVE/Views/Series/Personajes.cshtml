@@ -1,0 +1,45 @@
+﻿@model MvcSeriesPersonajesEVE.Models.Personaje
+
+@{
+    ViewData["Title"] = "Personajes";
+}
+
+<h1>Personajes</h1>
+    
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                 @Html.DisplayNameFor(model => model.IdPersonaje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.IdPersonaje)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Nombre)
+            </td>
+            <td>
+                    <img src = @Model.Imagen
+                    style="width: 230px; height: 200px;"/>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

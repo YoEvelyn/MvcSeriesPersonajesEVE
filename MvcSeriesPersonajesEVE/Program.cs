@@ -1,9 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using MvcSeriesPersonajesEVE.Data;
+using MvcSeriesPersonajesEVE.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+string connectionString =
+    builder.Configuration.GetConnectionString("sqlseries");
+builder.Services.AddTransient<RepositorySeries>();
+builder.Services.AddDbContext<SeriesContext>
+    (options => options.UseSqlServer(connectionString));
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -22,6 +32,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Series}/{action=Index}/{id?}");
 
 app.Run();
